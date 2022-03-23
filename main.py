@@ -2,7 +2,7 @@
 from fastapi import FastAPI, Query
 
 # import StemmerFactory class
-from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
+# from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 
 # import joblib for model naive bayes
 # import joblib 
@@ -17,11 +17,11 @@ app = FastAPI(
 # steaming function with sastrawi
 def text_sastrawi(text, remove_stop_words=True, lemmatize_words=True):
     # create stemmer
-    factory = StemmerFactory()
-    stemmer = factory.create_stemmer()
+    # factory = StemmerFactory()
+    # stemmer = factory.create_stemmer()
     
-    # stemming process
-    text = stemmer.stem(text)
+    # # stemming process
+    # text = stemmer.stem(text)
 
     return text
 
@@ -29,7 +29,7 @@ def text_sastrawi(text, remove_stop_words=True, lemmatize_words=True):
 # with open("models/judul_model_nb.pkl", "rb") as f:
 #     model = joblib.load(f)
 
-# load the tfid coverter
+# # load the tfid coverter
 # with open("models/judul_model_tfid.pkl", "rb") as f:
 #     vectorizer = joblib.load(f)
     
@@ -44,7 +44,7 @@ async def read_item(judul: str = Query(None, min_length=2, max_length=12)):
     # clean the review
     judul_stemming = text_sastrawi(judul)
 
-    # tfid
+    # # tfid
     # judul_tfid = vectorizer.transform([judul_stemming])
 
     # # perform prediction
@@ -89,7 +89,3 @@ async def read_item(judul: str = Query(None, min_length=2, max_length=12)):
     }
 
     return result
-
-# .\env\Scripts\activate aktifasi modul env py
-# uvicorn main:app --reload untuk menyalakan server
-# uvicorn main:app --reload untuk hot reload
